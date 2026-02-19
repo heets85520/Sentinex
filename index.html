@@ -6,108 +6,384 @@
 <title>Sentinex - Secure App Lock</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #0f172a, #1e293b);
-    color: white;
-    text-align: center;
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+color:white;
+text-align:center;
+background:linear-gradient(270deg,#020024,#090979,#000000);
+background-size:600% 600%;
+animation:bgmove 12s ease infinite;
 }
 
-header { padding: 60px 20px; }
-
-.logo {
-    font-size: 48px;
-    font-weight: bold;
-    color: #22c55e;
-    text-shadow: 0 0 20px #22c55e;
+@keyframes bgmove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
 }
 
-.version {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #94a3b8;
+/* HEADER FIX */
+header{
+padding:90px 20px 50px;
+max-width:900px;
+margin:auto;
 }
 
-.download-btn {
-    display: inline-block;
-    margin-top: 25px;
-    padding: 15px 35px;
-    background: #22c55e;
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    border-radius: 8px;
-    transition: 0.3s;
+/* LOGO STYLE */
+.logo{
+font-size:44px;
+font-weight:bold;
+color:#0b5cff;
+text-shadow:0 0 20px #0b5cff;
+margin-bottom:10px;
 }
 
-.download-btn:hover { background: #16a34a; }
-
-.counter {
-    margin-top: 10px;
-    color: #cbd5e1;
+/* BUTTON FIX */
+.download-btn{
+display:inline-block;
+margin-top:20px;
+padding:14px 32px;
+background:#0b5cff;
+color:white;
+text-decoration:none;
+border-radius:10px;
+font-size:18px;
+box-shadow:0 0 15px rgba(0,102,255,0.7);
+transition:.3s;
 }
 
-.section { padding: 50px 20px; }
-
-.card {
-    background: #1e293b;
-    padding: 30px;
-    border-radius: 10px;
-    max-width: 800px;
-    margin: auto;
+.download-btn:hover{
+transform:scale(1.05);
+box-shadow:0 0 25px rgba(0,102,255,1);
+}
+.download-btn{
+position:sticky;
+top:20px;
+z-index:5;
+}
+/* SECTIONS */
+.section{
+padding:40px 20px;
 }
 
-textarea, select {
-    padding: 10px;
-    border-radius: 6px;
-    border: none;
-    width: 90%;
-    max-width: 500px;
+.card{
+background:rgba(0,0,0,0.45);
+backdrop-filter:blur(10px);
+padding:28px;
+border-radius:16px;
+max-width:820px;
+margin:auto;
+box-shadow:0 0 25px rgba(0,0,0,0.6);
+}
+.card p{
+margin-bottom:18px;
+}
+/* FORM */
+textarea,select{
+padding:10px;
+border-radius:6px;
+border:none;
+width:90%;
+max-width:500px;
+background:#020024;
+color:white;
 }
 
-button {
-    padding: 12px 25px;
-    background:#22c55e;
-    border:none;
-    border-radius:8px;
-    color:white;
-    font-size:16px;
-    cursor:pointer;
+button{
+padding:12px 25px;
+background:#0b5cff;
+border:none;
+border-radius:8px;
+color:white;
+font-size:16px;
+cursor:pointer;
 }
 
-button:hover { background:#16a34a; }
-
-.faq-item {
-    text-align:left;
-    margin-bottom:10px;
+button:hover{
+box-shadow:0 0 20px #0b5cff;
 }
 
-.faq-question {
-    cursor:pointer;
-    font-weight:bold;
-    padding:10px;
-    background:#0f172a;
-    border-radius:6px;
+/* FAQ */
+.faq-question{
+cursor:pointer;
+font-weight:bold;
+padding:12px;
+background:#020024;
+border-radius:6px;
 }
 
-.faq-answer {
-    display:none;
-    padding:10px;
-    color:#cbd5e1;
+.faq-answer{
+display:none;
+padding:10px;
+color:#cbd5e1;
 }
 
-footer {
-    margin-top: 50px;
-    padding: 20px;
-    background: #0f172a;
-    font-size: 14px;
-    color: #94a3b8;
+/* FOOTER */
+footer{
+margin-top:40px;
+padding:20px;
+background:rgba(0,0,0,0.5);
+color:#94a3b8;
+}
+.arrow{
+display:inline-block;
+margin-right:8px;
+transition:transform 0.3s ease;
+font-size:20px;
+}
+
+.arrow.rotate{
+transform:rotate(180deg);
 }
 </style>
 </head>
 
 <body>
+
+<header>
+
+<div class="logo">SENTINEX 🔒</div>
+<p style="color:#0b5cff;font-weight:bold;margin-top:6px;">
+Smart Protection Without Tracking
+</p>
+<p style="color:#94a3b8;margin-top:8px;">
+Independent Android Security Tool • Built by HeetDevLab
+</p>
+
+
+<p>Advanced Android App Lock & Privacy Protection</p>
+
+<div class="version" id="versionText"></div>
+
+<a class="download-btn" href="Sentinex_Secure_v1.0.1.apk" download onclick="increaseDownload()">
+Download APK
+</a>
+
+<div class="counter">
+Downloads: <span id="downloadCount">0</span>
+</div>
+<p style="color:#94a3b8;font-size:13px;margin-top:6px;">
+No signup • Works Offline • Safe Accessibility Usage
+</p>
+
+
+
+
+<div class="card" style="max-width:750px;text-align:left;margin-top:30px;">
+
+<p style="color:#cbd5e1;line-height:1.6;">
+
+Some Android devices may show a Play Protect warning because Sentinex
+is installed directly from this website.
+
+<br><br>
+
+This is completely normal for independent apps and
+<b style="color:white;">does NOT mean the app is unsafe.</b>
+
+</p>
+<div onclick="toggleInstallGuide()" 
+style="cursor:pointer;
+padding:16px;
+font-weight:bold;
+font-size:18px;
+border-radius:12px;
+background:rgba(11,92,255,0.15);
+color:#0b5cff;
+text-align:center;">
+<span id="arrow" class="arrow">⌵</span> Install Guide — Safe & Trusted
+</div>
+
+<div id="installGuide" style="display:none;padding:18px 6px;color:#cbd5e1;line-height:1.6;">
+
+<p style="color:#94a3b8;">
+Installed from website — Play Protect may show a warning because the app is not from Play Store.
+This is normal and does <b>NOT</b> mean the app is unsafe.
+</p>
+
+<br>
+
+<b style="color:white;">✔ Quick Install</b><br>
+• Tap <b>More details</b><br>
+• Select <b>Install anyway</b><br>
+• Enable Accessibility after opening<br><br>
+
+<b style="color:white;">✔ If Install Button Missing</b><br>
+• Play Store → Profile → Play Protect<br>
+• Turn OFF Scan apps temporarily<br>
+• Install again and turn it back ON<br><br>
+
+<b style="color:white;">✔ Allow From Browser</b><br>
+• Settings → Security → Install unknown apps<br>
+• Enable Allow from this source<br><br>
+
+<p style="color:#94a3b8;">
+🔒 Works offline • No data collected • Safe accessibility usage
+</p>
+
+</div>
+
+</div>
+
+
+</header>
+<div class="section">
+    <div class="card">
+        <h2>Key Features</h2>
+        <p>✔ Secure PIN Protection</p>
+        <p>✔ Accessibility Based App Lock</p>
+        <p>✔ Wrong Attempt Logging</p>
+        <p>✔ Smart Lock Reset</p>
+        <p>✔ Fully Offline – No Data Collection</p>
+    </div>
+</div>
+
+<div class="section">
+    <div class="card">
+        <h2>Submit Your Review</h2>
+        <form action="https://formsubmit.co/sentinex.official.app@gmail.com" method="POST">
+            <input type="hidden" name="_captcha" value="false">
+
+            <select name="Rating" required>
+                <option bgcolor ="black" value="">Select Rating</option>
+                <option>⭐⭐⭐⭐⭐ - Excellent</option>
+                <option>⭐⭐⭐⭐ - Very Good</option>
+                <option>⭐⭐⭐ - Good</option>
+                <option>⭐⭐ - Average</option>
+                <option>⭐ - Poor</option>
+            </select>
+            <br><br>
+
+            <textarea name="Review" rows="5" required></textarea>
+            <br><br>
+
+            <button type="submit">Submit Review</button>
+        </form>
+    </div>
+</div>
+
+<div class="section">
+    <div class="card">
+        <h2>FAQ</h2>
+<div class="faq-item">
+    <div class="faq-question" onclick="toggleFAQ(this)">
+        How to install if Play Protect blocks it?
+    </div>
+    <div class="faq-answer">
+        When installing from website:
+        <br><br>
+        • Tap "More details"<br>
+        • Tap "Install anyway"<br>
+        • Open app and enable Accessibility
+        <br><br>
+        This happens because the app is not from Play Store.
+    </div>
+</div>
+<div class="faq-item">
+    <div class="faq-question" onclick="toggleFAQ(this)">
+        Why does Play Protect block the app?
+    </div>
+    <div class="faq-answer">
+        Sentinex Secure uses Android Accessibility Service for app lock functionality.
+        Apps using accessibility may trigger security warnings when installed outside Play Store.
+        The app does not collect personal data and works fully offline.
+    </div>
+</div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                Does Sentinex collect data?
+            </div>
+            <div class="faq-answer">
+                No. Sentinex works completely offline and does not collect personal data.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                Why does Play Protect show warning?
+            </div>
+            <div class="faq-answer">
+                Because the app is installed from website and uses Accessibility for security features.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                Is Sentinex safe?
+            </div>
+            <div class="faq-answer">
+                Yes. No hidden tracking, no background spying, fully offline.
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="section">
+    <div class="card">
+        <h2>Privacy Policy</h2>
+        <p>Read full privacy policy <a href="privacy.html" style="color:#22c55e;">here</a>.</p>
+    </div>
+</div>
+
+<div class="section">
+    <div class="card">
+        <h2>Developer</h2>
+        <p><b>Developed by Heet Shah</b></p>
+        <p>Contact: sentinex.official.app@gmail.com</p>
+        <p>Personal Contact: heets85520@gmail.com</p>
+    </div>
+</div>
+
+<footer>
+   © 2026 Sentinex • Powered by HeetDevLab
+</footer>
+
+<script>
+// Version Auto Update
+const version = "Version 1.0.0";
+const year = new Date().getFullYear();
+document.getElementById("versionText").innerText =
+    version + " | Updated " + year;
+
+// Download Counter (Browser Based)
+function increaseDownload() {
+    let count = localStorage.getItem("downloadCount");
+    count = count ? parseInt(count) + 1 : 1;
+    localStorage.setItem("downloadCount", count);
+    document.getElementById("downloadCount").innerText = count;
+}
+
+window.onload = function() {
+    let saved = localStorage.getItem("downloadCount");
+    if (saved) {
+        document.getElementById("downloadCount").innerText = saved;
+    }
+}
+
+// FAQ Toggle
+function toggleFAQ(element) {
+    let answer = element.nextElementSibling;
+    answer.style.display =
+        answer.style.display === "block" ? "none" : "block";
+}
+function toggleInstallGuide(){
+let box=document.getElementById("installGuide");
+let arrow=document.getElementById("arrow");
+
+if(box.style.display==="block"){
+box.style.display="none";
+arrow.classList.remove("rotate");
+}else{
+box.style.display="block";
+arrow.classList.add("rotate");
+}
+}
+</script>
+
+</body>
+</html>
 
 <header>
     <div class="logo">SENTINEX 🔒</div>
